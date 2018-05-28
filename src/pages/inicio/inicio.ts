@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams ,ModalController} from 'ionic-angular';
 
 import { Geolocation } from '@ionic-native/geolocation';
 import { Platform } from 'ionic-angular';
-
+//import {ModalNuevoSitioPage} from '../modal-nuevo-sitio/modal-nuevo-sitio';
 
 declare var google: any;
 
@@ -26,6 +26,7 @@ export class InicioPage {
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
               public  platform: Platform,
+              public modalCtrl : ModalController,
               private geolocation: Geolocation) {
 
     platform.ready().then(() => {
@@ -47,13 +48,27 @@ export class InicioPage {
       }
     );
   }
+
   loadMap(){
     let mapContainer = document.getElementById('map');
      this.map = new google.maps.Map(mapContainer, {
        center: this.coords,
        zoom: 12
-     });
- }
+    });
+    // Colocamos el marcador
+    let miMarker = new google.maps.Marker({
+              icon : 'assets/imgs/ico_estoy_aqui.png',
+              map: this.map,
+              position: this.coords
+    }); 
+  }
+
+  nuevoSitio(){
+   // aquí vamos a abrir el modal para añadir nuestro sitio.
+   let mimodal = this.modalCtrl.create( 'ModalNuevoSitioPage',this.coords );
+   mimodal.present();
+}
+
   ionViewDidLoad() {
     console.log('ionViewDidLoad InicioPage');
   }
