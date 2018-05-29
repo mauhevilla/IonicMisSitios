@@ -7,6 +7,9 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { MyApp } from './app.component';
 import { Geolocation } from '@ionic-native/geolocation';
 import { Camera } from '@ionic-native/camera';
+//para la db local 
+import { DbProvider } from '../providers/db/db';
+import { SQLite } from '@ionic-native/sqlite';
 
 @NgModule({
   declarations: [
@@ -26,7 +29,8 @@ import { Camera } from '@ionic-native/camera';
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    Geolocation,Camera
+    Geolocation,Camera,
+    DbProvider, SQLite
   ]
 })
 export class AppModule {}

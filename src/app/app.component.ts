@@ -4,6 +4,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { MisTabsPage } from '../pages/mis-tabs/mis-tabs';
+import { DbProvider } from '../providers/db/db';
 
 @Component({
   templateUrl: 'app.html'
@@ -11,12 +12,17 @@ import { MisTabsPage } from '../pages/mis-tabs/mis-tabs';
 export class MyApp {
   rootPage:any = 'MisTabsPage';
 
-  constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
+  constructor(platform: Platform,
+              statusBar: StatusBar, 
+              splashScreen: SplashScreen,
+              public db: DbProvider) {
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
       statusBar.styleDefault();
       splashScreen.hide();
+      this.db.openDb().then(() => this.db.createTableSitios())
+
     });
   }
 }
