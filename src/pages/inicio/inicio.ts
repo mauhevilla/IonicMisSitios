@@ -52,9 +52,8 @@ export class InicioPage {
   loadMap(){
     let mapContainer = document.getElementById('map');
      this.map = new google.maps.Map(mapContainer, {
-       center: this.coords,
-       zoom: 12
-    });
+       center: this.coords, zoom: 12
+      });
     // Colocamos el marcador
     let miMarker = new google.maps.Marker({
               icon : 'assets/imgs/ico_estoy_aqui.png',
