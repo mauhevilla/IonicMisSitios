@@ -11,6 +11,8 @@ import { Camera } from '@ionic-native/camera';
 import { DbProvider } from '../providers/db/db';
 import { SQLite } from '@ionic-native/sqlite';
 
+import { LaunchNavigator } from '@ionic-native/launch-navigator';
+
 @NgModule({
   declarations: [
     MyApp
@@ -30,7 +32,8 @@ import { SQLite } from '@ionic-native/sqlite';
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     Geolocation,Camera,
-    DbProvider, SQLite
+    DbProvider, SQLite,
+    LaunchNavigator
   ]
 })
 export class AppModule {}
